@@ -29,11 +29,10 @@ namespace DocsAndHospitals.API
 
 
             // Dependency Injection
-            // Реєструємо HospitalRepository вручну, передаючи шлях до файлу
             builder.Services.AddScoped<IHospitalRepository>(provider =>
-                new HospitalRepository("hospitals.json")); // Шлях до файлу тут можна змінити
+                new HospitalRepository("hospitals.json")); 
 
-            // HospitalService - Scoped (не Singleton, бо залежить від Scoped репозиторію)
+            // HospitalService - Scoped 
             builder.Services.AddScoped<IHospitalService, HospitalService>();
 
             builder.Services.AddSingleton<AuthService>();
