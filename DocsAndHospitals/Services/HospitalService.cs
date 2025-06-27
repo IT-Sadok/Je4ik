@@ -29,7 +29,7 @@ namespace DocsAndHospitals.Services
 
         public Hospital? GetHospitalById(int id)
         {
-            return _hospitals.FirstOrDefault(h => h.KNumber == id);
+            return _hospitals.FirstOrDefault(h => h.Id == id);
         }
 
         public bool DeleteHospital(int id)
@@ -55,7 +55,7 @@ namespace DocsAndHospitals.Services
 
         public Doctor? GetDoctor(Hospital hospital, int doctorId)
         {
-            return hospital.Doctors.FirstOrDefault(d => d.KNumber == doctorId);
+            return hospital.Doctors.FirstOrDefault(d => d.Id == doctorId);
         }
 
         public void UpdateDoctor(Doctor doctor, string? name = null, string? specialization = null)
@@ -66,7 +66,7 @@ namespace DocsAndHospitals.Services
 
         public void DeleteDoctor(Hospital hospital, int doctorId)
         {
-            hospital.Doctors.RemoveAll(d => d.KNumber == doctorId);
+            hospital.Doctors.RemoveAll(d => d.Id == doctorId);
         }
 
         public async Task SaveAsync()

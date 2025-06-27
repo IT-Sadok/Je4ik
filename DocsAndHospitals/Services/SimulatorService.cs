@@ -22,7 +22,7 @@ namespace DocsAndHospitals.Services
 
             var doctor = new Doctor
             {
-                KNumber = 1,
+                Id = 1,
                 Name = "Doc X",
                 Specialization = "Terapeut",
                 Slots = new List<Slot>

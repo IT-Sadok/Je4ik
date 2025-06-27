@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using DocsAndHospitals.Models;
 
 public class RegisterValidator : AbstractValidator<RegisterRequest>
 {
@@ -9,10 +10,15 @@ public class RegisterValidator : AbstractValidator<RegisterRequest>
             .EmailAddress().WithMessage("Email must be a valid email address.");
 
         RuleFor(x => x.Password)
+            .NotEmpty().WithMessage("Password is required.")
             .MinimumLength(6).WithMessage("Password must be at least 6 characters long.");
 
         RuleFor(x => x.ConfirmPassword)
             .Equal(x => x.Password)
             .WithMessage("Confirm password must match the password.");
+
+        RuleFor(x => x.Role)
+            .IsInEnum()
+            .WithMessage("Role must be a valid value.");
     }
 }

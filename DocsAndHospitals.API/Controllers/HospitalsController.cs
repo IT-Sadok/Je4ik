@@ -36,7 +36,7 @@ namespace DocsAndHospitals.API.Controllers
         {
             _hospitalService.AddHospital(hospital);
             await _hospitalService.SaveAsync();
-            return CreatedAtAction(nameof(GetById), new { id = hospital.KNumber }, hospital);
+            return CreatedAtAction(nameof(GetById), new { id = hospital.Id }, hospital);
         }
 
         [HttpPut("{id}")]

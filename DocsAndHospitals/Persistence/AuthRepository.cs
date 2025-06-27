@@ -1,4 +1,7 @@
 ﻿using DocsAndHospitals.Models;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 public class AuthRepository
 {
@@ -18,7 +21,15 @@ public class AuthRepository
         });
     }
 
-    public void AddUser(User user) => _users.Add(user);
+    public Task AddUserAsync(User user)
+    {
+        _users.Add(user);
+        return Task.CompletedTask;
+    }
 
-    public User? GetByEmail(string email) => _users.FirstOrDefault(x => x.Email == email);
+    public Task<User?> GetByEmailAsync(string email)
+    {
+        var user = _users.FirstOrDefault(x => x.Email == email);
+        return Task.FromResult(user);
+    }
 }
