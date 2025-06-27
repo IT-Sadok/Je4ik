@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35931.197 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocsAndHospitals.API", "DocsAndHospitals.API\DocsAndHospitals.API.csproj", "{CDD3B904-703A-7DC2-0EE0-58A8FD2653E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocsAndHospitals", "DocsAndHospitals\DocsAndHospitals.csproj", "{9A7AD435-685D-AE54-107E-B9310CD84E49}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CDD3B904-703A-7DC2-0EE0-58A8FD2653E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDD3B904-703A-7DC2-0EE0-58A8FD2653E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDD3B904-703A-7DC2-0EE0-58A8FD2653E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDD3B904-703A-7DC2-0EE0-58A8FD2653E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A7AD435-685D-AE54-107E-B9310CD84E49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A7AD435-685D-AE54-107E-B9310CD84E49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A7AD435-685D-AE54-107E-B9310CD84E49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A7AD435-685D-AE54-107E-B9310CD84E49}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8A1AEC92-E27E-4D51-A661-BA186E84F604}
+	EndGlobalSection
+EndGlobal

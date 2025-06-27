@@ -3,12 +3,12 @@ using System.Text.Json;
 
 namespace DocsAndHospitals.Persistence
 {
-    public class JsonHospitalRepository : IHospitalRepository
+    public class HospitalRepository : IHospitalRepository
     {
         private readonly string _filePath;
         private static readonly JsonSerializerOptions _options = new JsonSerializerOptions { WriteIndented = true };
 
-        public JsonHospitalRepository(string filePath)
+        public HospitalRepository(string filePath)
         {
             _filePath = filePath;
         }
