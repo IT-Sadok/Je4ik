@@ -1,5 +1,4 @@
 ﻿using FluentValidation;
-using DocsAndHospitals.UI;
 using DocsAndHospitals.Models;
 
 public class LoginValidator : AbstractValidator<LoginRequest>

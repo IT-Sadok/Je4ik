@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace DocsAndHospitals.Services
 {
-    public class HospitalService
+    public class HospitalService : IHospitalService
     {
         private List<Hospital> _hospitals = new List<Hospital>();
         private readonly IHospitalRepository _repository;
