@@ -36,7 +36,7 @@ namespace DocsAndHospitals.API
             builder.Services.AddScoped<IHospitalService, HospitalService>();
 
             builder.Services.AddSingleton<AuthService>();
-            builder.Services.AddSingleton<AuthRepository>();
+            builder.Services.AddScoped<IUserRepository, UserEfRepository>();
             builder.Services.AddSingleton<PasswordHasher>();
 
             // FluentValidation
