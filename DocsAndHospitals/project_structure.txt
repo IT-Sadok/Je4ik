@@ -1,0 +1,92 @@
+Folder PATH listing for volume New Volume
+Volume serial number is B48E-EE16
+F:.
+|   DocsAndHospitals.csproj
+|   DocsAndHospitals.sln
+|   project_structure.txt
+|   
++---Auth
+|       JwtService.cs
+|       JwtSettings.cs
+|       
++---bin
+|   +---Debug
+|   |   \---net8.0
+|   |           DocsAndHospitals.deps.json
+|   |           DocsAndHospitals.dll
+|   |           DocsAndHospitals.pdb
+|   |           hospitals.json
+|   |           
+|   \---Release
+|       \---net8.0
++---Infrastructure
+|       PasswordHasher.cs
+|       
++---Models
+|       AppointmentManager.cs
+|       Doctors.cs
+|       Hospitals.cs
+|       IHospitalRepository.cs
+|       LoginRequest.cs
+|       Patient.cs
+|       RegisterRequest.cs
+|       Slot.cs
+|       User.cs
+|       
++---obj
+|   |   DocsAndHospitals.csproj.nuget.dgspec.json
+|   |   DocsAndHospitals.csproj.nuget.g.props
+|   |   DocsAndHospitals.csproj.nuget.g.targets
+|   |   project.assets.json
+|   |   project.nuget.cache
+|   |   
+|   +---Debug
+|   |   \---net8.0
+|   |       |   .NETCoreApp,Version=v8.0.AssemblyAttributes.cs
+|   |       |   apphost.exe
+|   |       |   DocsAndHospitals.AssemblyInfo.cs
+|   |       |   DocsAndHospitals.AssemblyInfoInputs.cache
+|   |       |   DocsAndHospitals.assets.cache
+|   |       |   DocsAndHospitals.csproj.AssemblyReference.cache
+|   |       |   DocsAndHospitals.csproj.BuildWithSkipAnalyzers
+|   |       |   DocsAndHospitals.csproj.CoreCompileInputs.cache
+|   |       |   DocsAndHospitals.csproj.FileListAbsolute.txt
+|   |       |   DocsAndHospitals.dll
+|   |       |   DocsAndHospitals.GeneratedMSBuildEditorConfig.editorconfig
+|   |       |   DocsAndHospitals.GlobalUsings.g.cs
+|   |       |   DocsAndHospitals.pdb
+|   |       |   DocsAndHospitals.sourcelink.json
+|   |       |   
+|   |       +---ref
+|   |       |       DocsAndHospitals.dll
+|   |       |       
+|   |       \---refint
+|   |               DocsAndHospitals.dll
+|   |               
+|   \---Release
+|       \---net8.0
+|           |   .NETCoreApp,Version=v8.0.AssemblyAttributes.cs
+|           |   DocsAndHospitals.AssemblyInfo.cs
+|           |   DocsAndHospitals.AssemblyInfoInputs.cache
+|           |   DocsAndHospitals.assets.cache
+|           |   DocsAndHospitals.csproj.AssemblyReference.cache
+|           |   DocsAndHospitals.GeneratedMSBuildEditorConfig.editorconfig
+|           |   DocsAndHospitals.GlobalUsings.g.cs
+|           |   
+|           +---ref
+|           \---refint
++---Persistence
+|       AppDbContext.cs
+|       AuthRepository.cs
+|       HospitalRepository.cs
+|       
++---Services
+|       AuthService.cs
+|       HospitalService.cs
+|       IHospitalService.cs
+|       SimulatorService.cs
+|       
+\---Validators
+        LoginValidator.cs
+        RegisterValidator.cs
+        

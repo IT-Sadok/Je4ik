@@ -2,10 +2,10 @@
 using DocsAndHospitals.Models;
 using DocsAndHospitals.Persistence;
 using DocsAndHospitals.Services;
+using DocsAndHospitals.Validators;
 using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
@@ -25,18 +25,18 @@ namespace DocsAndHospitals.API
             // DbContext (SQL Server)
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
             builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(connectionString, b => b.MigrationsAssembly("DocsAndHospitals.API")));
-
+                options.UseSqlServer(connectionString, b => b.MigrationsAssembly("DocsAndHospitals.API")));
 
             // Dependency Injection
             builder.Services.AddScoped<IHospitalRepository>(provider =>
-                new HospitalRepository("hospitals.json")); 
+                new HospitalRepository("hospitals.json"));
 
             // HospitalService - Scoped 
             builder.Services.AddScoped<IHospitalService, HospitalService>();
 
-            builder.Services.AddSingleton<AuthService>();
+            // Auth related dependencies
             builder.Services.AddScoped<IUserRepository, UserEfRepository>();
+            builder.Services.AddScoped<AuthService>();
             builder.Services.AddSingleton<PasswordHasher>();
 
             // FluentValidation
@@ -68,7 +68,6 @@ namespace DocsAndHospitals.API
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.SecretKey))
                 };
             });
-
 
             var app = builder.Build();
 

@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using DocsAndHospitals.Models;
-using DocsAndHospitals.Services; // де твій AuthService
 using FluentValidation;
 using FluentValidation.Results;
+using System.Threading.Tasks;
+using DocsAndHospitals.Application;
+using DocsAndHospitals.Infrastructure;
+
 
 namespace DocsAndHospitals.API.Controllers
 {
@@ -24,13 +26,13 @@ namespace DocsAndHospitals.API.Controllers
         }
 
         [HttpPost("register")]
-        public IActionResult Register([FromBody] RegisterRequest request)
+        public async Task<IActionResult> Register([FromBody] RegisterRequest request)
         {
-            ValidationResult result = _registerValidator.Validate(request);
-            if (!result.IsValid)
-                return BadRequest(result.Errors);
+            ValidationResult validationResult = await _registerValidator.ValidateAsync(request);
+            if (!validationResult.IsValid)
+                return BadRequest(validationResult.Errors);
 
-            bool success = _authService.RegisterAsync(request).Result;
+            var success = await _authService.RegisterAsync(request);
             if (!success)
                 return Conflict("User with this email already exists.");
 
@@ -38,16 +40,17 @@ namespace DocsAndHospitals.API.Controllers
         }
 
         [HttpPost("login")]
-        public IActionResult Login([FromBody] LoginRequest request)
+        public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
-            ValidationResult result = _loginValidator.Validate(request);
-            if (!result.IsValid)
-                return BadRequest(result.Errors);
+            ValidationResult validationResult = await _loginValidator.ValidateAsync(request);
+            if (!validationResult.IsValid)
+                return BadRequest(validationResult.Errors);
 
-            var user = _authService.LoginAsync(request);
-            if (user == null)
+            var token = await _authService.LoginAsync(request);
+            if (token == null)
                 return Unauthorized("Invalid email or password.");
-            return Ok(user);
+
+            return Ok(token);
         }
     }
 }

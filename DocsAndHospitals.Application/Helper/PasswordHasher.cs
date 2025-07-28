@@ -11,6 +11,7 @@ public class PasswordHasher
         return Convert.ToBase64String(hash);
     }
 
-    public bool Verify(string hash, string password)
-        => hash == Hash(password);
+    public bool Verify(string password, string hash)
+    => hash == Hash(password);
+
 }

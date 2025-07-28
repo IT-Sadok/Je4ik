@@ -6,23 +6,24 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using DocsAndHospitals.Persistence;
 
 public class AuthService
 {
-    private readonly AuthRepository _repo;
+    private readonly IUserRepository _userRepository;
     private readonly PasswordHasher _hasher;
     private readonly IConfiguration _configuration;
 
-    public AuthService(AuthRepository repo, PasswordHasher hasher, IConfiguration configuration)
+    public AuthService(IUserRepository userRepository, PasswordHasher hasher, IConfiguration configuration)
     {
-        _repo = repo;
+        _userRepository = userRepository;
         _hasher = hasher;
         _configuration = configuration;
     }
 
     public async Task<bool> RegisterAsync(RegisterRequest request)
     {
-        if (await _repo.GetByEmailAsync(request.Email) != null)
+        if (await _userRepository.GetByEmailAsync(request.Email) != null)
             return false;
 
         var user = new User
@@ -32,17 +33,17 @@ public class AuthService
             Role = request.Role
         };
 
-        await _repo.AddUserAsync(user);
+        await _userRepository.AddUserAsync(user);
         return true;
     }
 
     public async Task<string?> LoginAsync(LoginRequest request)
     {
-        var user = await _repo.GetByEmailAsync(request.Email);
-        if (user == null || !_hasher.Verify(user.PasswordHash, request.Password))
+        var user = await _userRepository.GetByEmailAsync(request.Email);
+        if (user == null || !_hasher.Verify(request.Password, user.PasswordHash))
             return null;
 
-        return GenerateJwtToken(user);
+        return GenerateJwtToken(user);  
     }
 
     private string GenerateJwtToken(User user)
@@ -55,12 +56,12 @@ public class AuthService
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
         };
 
-        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtSettings:SecretKey"]));
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
         var token = new JwtSecurityToken(
-            issuer: _configuration["Jwt:Issuer"],
-            audience: _configuration["Jwt:Audience"],
+            issuer: _configuration["JwtSettings:Issuer"],
+            audience: _configuration["JwtSettings:Audience"],
             claims: claims,
             expires: DateTime.Now.AddHours(1),
             signingCredentials: creds);
