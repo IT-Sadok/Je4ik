@@ -1,13 +1,15 @@
-﻿using DocsAndHospitals.Auth;
+﻿using DocsAndHospitals.Application.Interfaces;
+using DocsAndHospitals.Auth;
 using DocsAndHospitals.Models;
 using DocsAndHospitals.Persistence;
 using DocsAndHospitals.Services;
+using DocsAndHospitals.Validators;
 using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using DocsAndHospitals.Application.DTOs;
 
 namespace DocsAndHospitals.API
 {
@@ -25,19 +27,14 @@ namespace DocsAndHospitals.API
             // DbContext (SQL Server)
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
             builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(connectionString, b => b.MigrationsAssembly("DocsAndHospitals.API")));
+                options.UseSqlServer(connectionString, b => b.MigrationsAssembly("DocsAndHospitals.API")));
 
-
-            // Dependency Injection
-            // Реєструємо HospitalRepository вручну, передаючи шлях до файлу
-            builder.Services.AddScoped<IHospitalRepository>(provider =>
-                new HospitalRepository("hospitals.json")); // Шлях до файлу тут можна змінити
-
-            // HospitalService - Scoped (не Singleton, бо залежить від Scoped репозиторію)
+            // HospitalService - Scoped 
             builder.Services.AddScoped<IHospitalService, HospitalService>();
 
-            builder.Services.AddSingleton<AuthService>();
-            builder.Services.AddSingleton<AuthRepository>();
+            // Auth related dependencies
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<IAuthService, AuthService>();
             builder.Services.AddSingleton<PasswordHasher>();
 
             // FluentValidation
@@ -69,7 +66,6 @@ namespace DocsAndHospitals.API
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.SecretKey))
                 };
             });
-
 
             var app = builder.Build();
 

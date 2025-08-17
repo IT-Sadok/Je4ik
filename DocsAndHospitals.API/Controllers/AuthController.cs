@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using DocsAndHospitals.Models;
-using DocsAndHospitals.Services; // де твій AuthService
 using FluentValidation;
 using FluentValidation.Results;
+using System.Threading.Tasks;
+using DocsAndHospitals.Application.DTOs;
+using DocsAndHospitals.Application.Interfaces;
 
 namespace DocsAndHospitals.API.Controllers
 {
@@ -10,11 +11,12 @@ namespace DocsAndHospitals.API.Controllers
     [Route("api/[controller]")]
     public class AuthController : ControllerBase
     {
-        private readonly AuthService _authService;
+        private readonly IAuthService _authService;
         private readonly IValidator<RegisterRequest> _registerValidator;
         private readonly IValidator<LoginRequest> _loginValidator;
 
-        public AuthController(AuthService authService,
+        public AuthController(
+            IAuthService authService,
             IValidator<RegisterRequest> registerValidator,
             IValidator<LoginRequest> loginValidator)
         {
@@ -24,30 +26,37 @@ namespace DocsAndHospitals.API.Controllers
         }
 
         [HttpPost("register")]
-        public IActionResult Register([FromBody] RegisterRequest request)
+        public async Task<IActionResult> Register([FromBody] RegisterRequest request)
         {
-            ValidationResult result = _registerValidator.Validate(request);
-            if (!result.IsValid)
-                return BadRequest(result.Errors);
+            ValidationResult validationResult = await _registerValidator.ValidateAsync(request);
+            if (!validationResult.IsValid)
+            {
+                var errors = validationResult.Errors.Select(e => e.ErrorMessage);
+                return BadRequest(new { Errors = errors });
+            }
 
-            bool success = _authService.RegisterAsync(request).Result;
+            var success = await _authService.RegisterAsync(request);
             if (!success)
-                return Conflict("User with this email already exists.");
+                return Conflict(new { Message = "User with this email already exists." });
 
-            return Ok("User registered successfully.");
+            return Ok(new { Message = "User registered successfully." });
         }
 
         [HttpPost("login")]
-        public IActionResult Login([FromBody] LoginRequest request)
+        public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
-            ValidationResult result = _loginValidator.Validate(request);
-            if (!result.IsValid)
-                return BadRequest(result.Errors);
+            ValidationResult validationResult = await _loginValidator.ValidateAsync(request);
+            if (!validationResult.IsValid)
+            {
+                var errors = validationResult.Errors.Select(e => e.ErrorMessage);
+                return BadRequest(new { Errors = errors });
+            }
 
-            var user = _authService.LoginAsync(request);
-            if (user == null)
-                return Unauthorized("Invalid email or password.");
-            return Ok(user);
+            var token = await _authService.LoginAsync(request);
+            if (token == null)
+                return Unauthorized(new { Message = "Invalid email or password." });
+
+            return Ok(new { Token = token });
         }
     }
 }

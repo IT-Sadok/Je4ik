@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using DocsAndHospitals.Application;
+using DocsAndHospitals.Application.DTOs;
+using System.Threading.Tasks;
 using DocsAndHospitals.Models;
 using DocsAndHospitals.Services;
-using System.Threading.Tasks;
 
 namespace DocsAndHospitals.API.Controllers
 {
