@@ -1,5 +1,8 @@
-﻿public class LoginRequest
+﻿namespace DocsAndHospitals.Application.DTOs
 {
-    public string Email { get; set; } = null!;
-    public string Password { get; set; } = null!;
+    public class LoginRequest
+    {
+        public string Email { get; set; } = null!;
+        public string Password { get; set; } = null!;
+    }
 }

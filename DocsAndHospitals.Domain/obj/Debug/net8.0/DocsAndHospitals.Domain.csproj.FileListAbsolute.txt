@@ -1,0 +1,12 @@
+F:\IT\IT_Sadok\Je4ik\DocsAndHospitals.Domain\bin\Debug\net8.0\DocsAndHospitals.Domain.deps.json
+F:\IT\IT_Sadok\Je4ik\DocsAndHospitals.Domain\bin\Debug\net8.0\DocsAndHospitals.Domain.dll
+F:\IT\IT_Sadok\Je4ik\DocsAndHospitals.Domain\bin\Debug\net8.0\DocsAndHospitals.Domain.pdb
+F:\IT\IT_Sadok\Je4ik\DocsAndHospitals.Domain\obj\Debug\net8.0\DocsAndHospitals.Domain.GeneratedMSBuildEditorConfig.editorconfig
+F:\IT\IT_Sadok\Je4ik\DocsAndHospitals.Domain\obj\Debug\net8.0\DocsAndHospitals.Domain.AssemblyInfoInputs.cache
+F:\IT\IT_Sadok\Je4ik\DocsAndHospitals.Domain\obj\Debug\net8.0\DocsAndHospitals.Domain.AssemblyInfo.cs
+F:\IT\IT_Sadok\Je4ik\DocsAndHospitals.Domain\obj\Debug\net8.0\DocsAndHospitals.Domain.csproj.CoreCompileInputs.cache
+F:\IT\IT_Sadok\Je4ik\DocsAndHospitals.Domain\obj\Debug\net8.0\DocsAndHospitals.Domain.sourcelink.json
+F:\IT\IT_Sadok\Je4ik\DocsAndHospitals.Domain\obj\Debug\net8.0\DocsAndHospitals.Domain.dll
+F:\IT\IT_Sadok\Je4ik\DocsAndHospitals.Domain\obj\Debug\net8.0\refint\DocsAndHospitals.Domain.dll
+F:\IT\IT_Sadok\Je4ik\DocsAndHospitals.Domain\obj\Debug\net8.0\DocsAndHospitals.Domain.pdb
+F:\IT\IT_Sadok\Je4ik\DocsAndHospitals.Domain\obj\Debug\net8.0\ref\DocsAndHospitals.Domain.dll

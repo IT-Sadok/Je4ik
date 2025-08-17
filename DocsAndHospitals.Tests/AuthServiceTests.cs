@@ -4,7 +4,7 @@ using Moq;
 using Microsoft.Extensions.Configuration;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using DocsAndHospitals.Domain;
+using DocsAndHospitals.Application.DTOs;
 using DocsAndHospitals.Persistence;
 using DocsAndHospitals.Models;
 

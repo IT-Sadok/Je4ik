@@ -1,4 +1,5 @@
-﻿using DocsAndHospitals.Auth;
+﻿using DocsAndHospitals.Application.Interfaces;
+using DocsAndHospitals.Auth;
 using DocsAndHospitals.Models;
 using DocsAndHospitals.Persistence;
 using DocsAndHospitals.Services;
@@ -8,6 +9,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using DocsAndHospitals.Application.DTOs;
 
 namespace DocsAndHospitals.API
 {
@@ -27,16 +29,12 @@ namespace DocsAndHospitals.API
             builder.Services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(connectionString, b => b.MigrationsAssembly("DocsAndHospitals.API")));
 
-            // Dependency Injection
-            builder.Services.AddScoped<IHospitalRepository>(provider =>
-                new HospitalRepository("hospitals.json"));
-
             // HospitalService - Scoped 
             builder.Services.AddScoped<IHospitalService, HospitalService>();
 
             // Auth related dependencies
-            builder.Services.AddScoped<IUserRepository, UserEfRepository>();
-            builder.Services.AddScoped<AuthService>();
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<IAuthService, AuthService>();
             builder.Services.AddSingleton<PasswordHasher>();
 
             // FluentValidation

@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using DocsAndHospitals.Application.DTOs;        
 
 namespace DocsAndHospitals.Validators
 {

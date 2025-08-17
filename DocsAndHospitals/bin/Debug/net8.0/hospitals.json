@@ -1,0 +1,58 @@
+[
+  {
+    "KNumber": 0,
+    "Name": "City Hospital",
+    "Address": "123 Main St",
+    "PhoneNumber": "555-1234",
+    "Doctors": [
+      {
+        "KNumber": 0,
+        "Name": "Dr. Smith",
+        "Specialization": "Cardiologist"
+      },
+      {
+        "KNumber": 2,
+        "Name": "Dr. Brown",
+        "Specialization": "Neurologist"
+      }
+    ]
+  },
+  {
+    "KNumber": 1,
+    "Name": "Zhytomyr Likarnia",
+    "Address": "456 Elm St",
+    "PhoneNumber": "555-5678",
+    "Doctors": []
+  },
+  {
+    "KNumber": 2,
+    "Name": "State Hospital",
+    "Address": "789 Oak St",
+    "PhoneNumber": "555-9012",
+    "Doctors": [
+      {
+        "KNumber": 3,
+        "Name": "Dr. Wilson",
+        "Specialization": "Pediatrician"
+      },
+      {
+        "KNumber": 4,
+        "Name": "Dr. Johnson",
+        "Specialization": "Orthopedic"
+      }
+    ]
+  },
+  {
+    "KNumber": 8,
+    "Name": "1st",
+    "Address": "street",
+    "PhoneNumber": "233423432",
+    "Doctors": [
+      {
+        "KNumber": 7,
+        "Name": "John",
+        "Specialization": "Super"
+      }
+    ]
+  }
+]

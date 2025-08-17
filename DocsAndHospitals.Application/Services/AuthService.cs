@@ -1,14 +1,14 @@
-﻿using DocsAndHospitals.Models;
-using System.Threading.Tasks;
+﻿using DocsAndHospitals.Application.DTOs;
+using DocsAndHospitals.Application.Interfaces;
+using DocsAndHospitals.Models;
+using DocsAndHospitals.Persistence;
 using Microsoft.Extensions.Configuration;
-using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using DocsAndHospitals.Persistence;
 
-public class AuthService
+public class AuthService : IAuthService
 {
     private readonly IUserRepository _userRepository;
     private readonly PasswordHasher _hasher;
@@ -43,7 +43,7 @@ public class AuthService
         if (user == null || !_hasher.Verify(request.Password, user.PasswordHash))
             return null;
 
-        return GenerateJwtToken(user);  
+        return GenerateJwtToken(user);
     }
 
     private string GenerateJwtToken(User user)

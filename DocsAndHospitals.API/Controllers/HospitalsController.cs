@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using DocsAndHospitals.Application;
-using DocsAndHospitals.Infrastructure;
-using DocsAndHospitals.Domain;
+using DocsAndHospitals.Application.DTOs;
 using System.Threading.Tasks;
 using DocsAndHospitals.Models;
 using DocsAndHospitals.Services;

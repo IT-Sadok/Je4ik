@@ -2,6 +2,7 @@
 using Shouldly;
 using DocsAndHospitals.Models;
 using DocsAndHospitals.Validators;
+using DocsAndHospitals.Application.DTOs;    
 
 namespace DocsAndHospitals.Application.Validators
 {
